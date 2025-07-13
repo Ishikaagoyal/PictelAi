@@ -1,40 +1,38 @@
-"use client"
-import { auth } from '@/configs/firebaseConfig';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import React from 'react'
+'use client'
 
-function Authentication({ children }: any) {
-    const provider = new GoogleAuthProvider();
+import { auth } from '@/configs/firebaseConfig'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { useRouter } from 'next/navigation'
+import React, { ReactNode } from 'react'
 
-    const onButtonPress = () => {
-        signInWithPopup(auth, provider)
-            .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential: any = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                // The signed-in user info.
-                const user = result.user;
-                console.log(user);
-                // IdP data available using getAdditionalUserInfo(result)
-                // ...
-            }).catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-                // ...
-            });
+interface AuthenticationProps {
+  children: ReactNode
+}
+
+function Authentication({ children }: AuthenticationProps) {
+  const router = useRouter()
+  const provider = new GoogleAuthProvider()
+
+  const onButtonPress = async (e: React.MouseEvent) => {
+    e.preventDefault() // Prevent accidental link/form behavior
+
+    try {
+      const result = await signInWithPopup(auth, provider)
+      console.log('User:', result.user)
+      // router.push('/dashboard') // Optional redirect after login
+    } catch (error) {
+      console.error('Login error:', error)
     }
-    return (
-        <div>
-            <div onClick={onButtonPress}>
-                {children}
-            </div>
-        </div>
-    )
+  }
+
+  return (
+    <button
+      onClick={onButtonPress}
+      className="cursor-pointer bg-transparent border-none p-0 m-0"
+    >
+      {children}
+    </button>
+  )
 }
 
 export default Authentication

@@ -5,27 +5,51 @@ import { db } from "@/configs/db";
 import { usersTable } from "@/configs/schema";
 
 export async function POST(req: NextRequest) {
+  try {
     const { userEmail, userName } = await req.json();
 
-    // try {
-    const result = await db.select().from(usersTable)
-        .where(eq(usersTable.email, userEmail));
+    const existingUser = await db
+      .select()
+      .from(usersTable)
+      .where(eq(usersTable.email, userEmail));
 
-    if (result?.length == 0) {
+    if (existingUser.length === 0) {
+      const insertResult = await db
+        .insert(usersTable)
+        .values({
+          name: userName,
+          email: userEmail,
+          credits: 5,
+        })
+        .returning();
 
-        const result: any = await db.insert(usersTable).values({
-            name: userName,
-            email: userEmail,
-            credits: 0,
-            // @ts-ignore
-        }).returning(usersTable);
-
-        return NextResponse.json(result[0]);
+      return NextResponse.json(insertResult[0]);
     }
-    return NextResponse.json(result[0]);
+
+    // If user already exists, return the existing user
+    return NextResponse.json(existingUser[0]);
+
+  } catch (error) {
+    console.error("User insert failed:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error", detail: error },
+      { status: 500 }
+    );
+  }
+}
+export async function GET(req:NextRequest){
+  const requrl= req.url;
+  const {searchParams}= new URL(requrl);
+  //const uid= searchParams?.get('uid');
+  const email= searchParams?.get('email')
+  if(email){
+     const result= await db.select().from(usersTable)
+  .where(eq(usersTable.email,email));
+
+  return NextResponse.json(result[0]);
 
 
-    // } catch (e) {
-    //     return NextResponse.json(e)
-    // }
+  }
+  
+ 
 }

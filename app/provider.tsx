@@ -3,7 +3,7 @@ import { auth } from '@/configs/firebaseConfig';
 import { AuthContext } from '@/context/AuthContext';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react'
-
+import {PayPalScriptProvider} from "@paypal/react-paypal-js"
 interface AuthContextType {
     user: User | null;
 }
@@ -25,9 +25,11 @@ function Provider({
 
     return (
         <AuthContext.Provider value={{ user }}>
+            <PayPalScriptProvider options={{clientId:process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID??''}}>
             <div>
                 {children}
             </div>
+            </PayPalScriptProvider>
         </AuthContext.Provider>
     )
 }
