@@ -20,7 +20,7 @@ function Provider({
             setUser(user);
         });
 
-        return () => unsubscribe(); // Cleanup
+        return () => unsubscribe(); 
     }, []);
 
     return (
@@ -34,7 +34,7 @@ function Provider({
     )
 }
 
-// Custom hook to use auth
+
 export const useAuthContext = (): AuthContextType => {
     const context = useContext(AuthContext);
     if (!context) throw new Error("useAuth must be used within an AuthProvider");

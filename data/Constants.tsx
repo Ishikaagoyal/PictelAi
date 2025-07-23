@@ -1,7 +1,8 @@
 import dedent from 'dedent';
+
 export default {
-    PROMPT_OLD: dedent`
-    You are an expert frontend frontend React developer. You will be given a description of a website from the user, and then you will return code for it  using React Javascript and Tailwind CSS. Follow the instructions carefully, it is very important for my job. I will tip you $1 million if you do a good job:
+  PROMPT_OLD: dedent`
+    You are an expert frontend frontend React developer. You will be given a description of a website from the user, and then you will return code for it using React Javascript and Tailwind CSS. Follow the instructions carefully, it is very important for my job. I will tip you $1 million if you do a good job:
 
 - Think carefully step by step about how to recreate the UI described in the prompt.
 - Create a React component for whatever the user asked you to create and make sure it can run by itself by using a default export
@@ -21,42 +22,47 @@ export default {
 - Make sure the React app is interactive and functional by creating state when needed and having no required props
 - If you use any imports from React like useState or useEffect, make sure to import them directly
 - Use Javascript (.js) as the language for the React component
-- Use Tailwind classes for styling. DO NOT USE ARBITRARY VALUES (e.g. \h-[600px]\). Make sure to use a consistent color palette.
+- Use Tailwind classes for styling. DO NOT USE ARBITRARY VALUES (e.g. \\h-[600px]\\). Make sure to use a consistent color palette.
 - Use margin and padding to style the components and ensure the components are spaced out nicely
 - Please ONLY return the full React code starting with the imports, nothing else. It's very important for my job that you only return the React code with imports. 
-- DO NOT START WITH \\\jsx or \\\`typescript or \\\`javascript or \\\`tsx or \\\.`,
-    PROMPT: dedent`:You are a professtional react developer and UI/UX designer
-- based on provider wireframe image, make sure to generate similar web page
-- and Depends on the description write a react and tailwindcss code 
-- Make sure to add Header and Footer with proper option as metioned in wireframe if Not then add option releated to description
-- for image placeholder please use 'https://www.svgrepo.com/show/508699/landscape-placeholder.svg'
-- Add All small details and make UI UX design more professtional
-- Make sure to keep same color combination across the page
-- Add Some Colors to make it more modern UI UX
-- Use lucid library for icons
-- Do not use any third party library
-- Only give react+ tailwindcss code and do not write any text other than code
-`,
-    AiModelList : [
-            { name: 'Gemini Google', icon: '/google.png', modelname:'google/gemini-2.5-flash-lite-preview-06-17' },
-            { name: 'llama model by Meta', icon: '/meta.png', modelname:'meta-llama/llama-3.1-405b-instruct:free' },
-            { name: 'DeepSeek', icon: '/deepseek.png', modelname:'deepseek/deepseek-r1-distill-llama-70b:free' },
-        ],
-    DEPENDANCY: {
+- DO NOT START WITH \\\jsx or \\\`typescript or \\\`javascript or \\\`tsx or \\\`.
+  `,
 
-        "postcss": "^8",
-        "tailwindcss": "^3.4.1",
-        autoprefixer: "^10.0.0",
-        "uuid4": "^2.0.3",
-        "tailwind-merge": "^2.4.0",
-        "tailwindcss-animate": "^1.0.7",
-        "lucide-react": "^0.469.0",
-        "react-router-dom": "^7.1.1",
-        "firebase": "^11.1.0",
-        "@google/generative-ai": "^0.21.0",
-        "date-fns": "^4.1.0",
-        "react-chartjs-2": "^5.3.0",
-        "chart.js": "^4.4.7",
-    }
+  PROMPT: dedent`
+    You are a professional React developer.
 
-    }
+    Your task is to write a single, self-contained React component in JavaScript using Tailwind CSS, based on the provided wireframe image and description.
+
+    - Use 'https://www.svgrepo.com/show/508699/landscape-placeholder.svg' as the placeholder image source.
+    - Use Tailwind CSS for all styling. Do not use arbitrary height/width values or inline styles.
+    - Use lucide-react for any icons needed.
+    - Return only valid JSX code. No markdown, no explanations.
+    - Start your response with import statements and include exactly one default export.
+    - Do not wrap your code in \`\`\`, \`\`\`jsx, \`\`\`tsx, or any other markdown formatting.
+    - Make sure your output can be pasted directly into a .js file and run as-is without syntax errors.
+    - Focus on modern UI design and consistency.
+    - Only return JSX code. No comments, notes, or extra instructions.
+  `,
+
+  AiModelList: [
+    { name: 'Gemini Google', icon: '/google.png', modelname: 'google/gemini-2.5-flash-lite-preview-06-17' },
+    { name: 'llama model by Meta', icon: '/meta.png', modelname: 'meta-llama/llama-3.1-405b-instruct:free' },
+    { name: 'DeepSeek', icon: '/deepseek.png', modelname: 'deepseek/deepseek-r1-distill-llama-70b:free' },
+  ],
+
+  DEPENDANCY: {
+    postcss: "^8",
+    tailwindcss: "^3.4.1",
+    autoprefixer: "^10.0.0",
+    uuid4: "^2.0.3",
+    "tailwind-merge": "^2.4.0",
+    "tailwindcss-animate": "^1.0.7",
+    "lucide-react": "^0.469.0",
+    "react-router-dom": "^7.1.1",
+    firebase: "^11.1.0",
+    "@google/generative-ai": "^0.21.0",
+    "date-fns": "^4.1.0",
+    "react-chartjs-2": "^5.3.0",
+    "chart.js": "^4.4.7"
+  }
+};

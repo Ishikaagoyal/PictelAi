@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import Provider from "./provider";
-import ThemeWrapper from "./theme-provider"; // ✅ NEW
+import ThemeWrapper from "./theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeToggle } from "./(routes)/dashboard/_components/ThemeToggle";
 const geistSans = Geist({
@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={outfit.className}>
         <Provider>
-          <ThemeWrapper> {/* ✅ WRAP children with ThemeProvider */}
+          <ThemeWrapper>
             {children}
             <Toaster/>
              <div className="fixed bottom-4 right-4 z-50">

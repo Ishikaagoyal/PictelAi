@@ -55,7 +55,7 @@ const [file, setfile]=useState<any>();
             console.log('image uploaded')
         })
         const imageurl= await getDownloadURL(imageref)
-        console.log(imageurl)
+        //console.log(imageurl)
         const uid=uuidv4()
         //save info to db
         const result= await axios.post('/api/wireframe-to-code',{
@@ -71,7 +71,7 @@ const [file, setfile]=useState<any>();
             setloading(false);
             return;
         }
-        console.log(result.data)
+        //console.log(result.data)
         setloading(false);
         router.push('/view-code/'+ uid);
 
@@ -140,3 +140,4 @@ const [file, setfile]=useState<any>();
         </div>
     )
 }
+//copyrights @ishikagoyal

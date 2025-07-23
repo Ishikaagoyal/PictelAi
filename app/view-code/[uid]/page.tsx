@@ -50,6 +50,7 @@ export default function ViewCode() {
 
   const GenerateCode = async (record: RECORD) => {
     setLoading(true)
+
     const res = await fetch('/api/ai-model', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
@@ -67,14 +68,26 @@ export default function ViewCode() {
 
     const reader = res.body.getReader()
     const decoder = new TextDecoder()
+    let fullText = ''
 
     while (true) {
       const { done, value } = await reader.read()
       if (done) break
-      const text = decoder.decode(value).replace('```typescript', '').replace('```', '')
-      setCoderesp((prev) => prev + text)
+      fullText += decoder.decode(value)
     }
 
+    const cleaned = fullText
+  .replace(/```[a-z]*\n?/gi, '')
+  .replace(/```/g, '')
+  .replace(/<[^>]*<\/?script>/gi, '')
+  .replace(/^import .*;$/gim, (match, index, fullString) => {
+    // Keep only the first import, remove the rest
+    const firstImportIndex = fullString.indexOf(match)
+    return index === firstImportIndex ? match : ''
+  })
+  .trim()
+
+    setCoderesp(cleaned)
     setIsReady(true)
     updateDB()
     setLoading(false)

@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
   const { model, description, imageurl } = await req.json();
   
   const modelobj = Constants.AiModelList.find(item => item.name === model);
-  const modelname = modelobj?.modelname || 'google/gemini-2.5-flash-lite-preview-06-17'; // Fixed the fallback model name
+  const modelname = modelobj?.modelname || 'google/gemini-2.5-flash-lite-preview-06-17'; 
   console.log(modelname);
 
   const response = await openai.chat.completions.create({
@@ -54,3 +54,4 @@ export async function POST(req: NextRequest) {
     },
   });
 }
+//copyrights @ishikagoyal
