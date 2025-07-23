@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 PictelAI – Wireframe to Code Generator
 
-## Getting Started
+**Turn wireframes into production-ready code using AI.**  
+Supports TailwindCSS, live code editing, and multiple AI model choices (Gemini, DeepSeek, LLaMA).
 
-First, run the development server:
+---
+
+## ✨ Features
+
+- 🎨 Upload wireframes as images
+- ⚡ Get instant code output with Tailwind support
+- 🧠 Choose from Gemini, DeepSeek, or LLaMA models
+- 💻 Built-in code editor with live preview using Sandbox
+- 🌗 Light/dark mode switching
+- 🔒 Auth via Firebase
+- 5 free credits for new users
+- Paypal SDK to buy more credits
+
+---
+
+## 📸 Screenshots
+
+### Homepage  
+<img src="https://github.com/user-attachments/assets/a0dcef68-872d-4c6d-8e93-52b9f37f1ee1" width="600" style="margin-bottom: 20px;" />
+
+---
+
+### Workspace  
+<img src="https://github.com/user-attachments/assets/f87c3410-9344-47c2-906e-90ea2dfb00c6" width="600" style="margin-bottom: 20px;" />
+
+---
+
+### Designs Page  
+<img src="https://github.com/user-attachments/assets/1ca42b59-c6bd-487b-8bdd-5943c37d7017" width="600" style="margin-bottom: 20px;" />
+
+---
+
+### Code Editor Screen  
+<img src="https://github.com/user-attachments/assets/7b7ccb15-491f-4e8d-9fd7-d2924c789337" width="600" style="margin-bottom: 20px;" />
+
+---
+
+### Payment Gateway Screen  
+<img src="https://github.com/user-attachments/assets/fd82dcab-97de-473b-902f-03e072406f77" width="600" style="margin-bottom: 20px;" />
+
+
+---
+## 🧰 Tech Stack
+
+- Next.js
+- PostreSQL
+- TailwindCSS
+- Firebase Auth
+- Lucide-react Icons
+- ShadCN UI Components
+
+---
+## 🚀 Getting Started
 
 ```bash
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+---
+Run on localhost:3000
+---
+Licensed by MIT
+---
+Copyright @ishikaagoyal
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
